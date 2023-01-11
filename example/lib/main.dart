@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:virtual_keyboard/virtual_keyboard.dart';
+import 'package:another_virtual_keyboard/another_virtual_keyboard.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,14 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               text,
-              style: Theme.of(context).textTheme.display1,
+              style: Theme.of(context).textTheme.headline4,
             ),
             SwitchListTile(
               title: Text(
                 'Keyboard Type = ' +
-                    (isNumericMode
-                        ? 'VirtualKeyboardType.Numeric'
-                        : 'VirtualKeyboardType.Alphanumeric'),
+                    (isNumericMode ? 'VirtualKeyboardType.Numeric' : 'VirtualKeyboardType.Alphanumeric'),
               ),
               value: isNumericMode,
               onChanged: (val) {
@@ -69,9 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: VirtualKeyboard(
                   height: 300,
                   textColor: Colors.white,
-                  type: isNumericMode
-                      ? VirtualKeyboardType.Numeric
-                      : VirtualKeyboardType.Alphanumeric,
+                  type: isNumericMode ? VirtualKeyboardType.Numeric : VirtualKeyboardType.Alphanumeric,
                   onKeyPress: _onKeyPress),
             )
           ],
