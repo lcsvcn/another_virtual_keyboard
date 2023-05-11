@@ -45,12 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               text,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             SwitchListTile(
               title: Text(
                 'Keyboard Type = ' +
-                    (isNumericMode ? 'VirtualKeyboardType.Numeric' : 'VirtualKeyboardType.Alphanumeric'),
+                    (isNumericMode
+                        ? 'VirtualKeyboardType.Numeric'
+                        : 'VirtualKeyboardType.Alphanumeric'),
               ),
               value: isNumericMode,
               onChanged: (val) {
@@ -67,7 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
               child: VirtualKeyboard(
                   height: 300,
                   textColor: Colors.white,
-                  type: isNumericMode ? VirtualKeyboardType.Numeric : VirtualKeyboardType.Alphanumeric,
+                  type: isNumericMode
+                      ? VirtualKeyboardType.Numeric
+                      : VirtualKeyboardType.Alphanumeric,
                   onKeyPress: _onKeyPress),
             )
           ],

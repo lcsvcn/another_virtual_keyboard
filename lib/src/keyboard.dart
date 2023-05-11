@@ -132,9 +132,7 @@ class _VirtualKeyboardState extends State<VirtualKeyboard> {
   List<Widget> _rows() {
     // Get the keyboard Rows
     List<List<VirtualKeyboardKey>> keyboardRows =
-        type == VirtualKeyboardType.Numeric
-            ? _getKeyboardRowsNumeric()
-            : _getKeyboardRows();
+        type == VirtualKeyboardType.Numeric ? _getKeyboardRowsNumeric() : _getKeyboardRows();
 
     // Generate keyboard row.
     List<Widget> rows = List.generate(keyboardRows.length, (int rowNum) {
@@ -148,8 +146,7 @@ class _VirtualKeyboardState extends State<VirtualKeyboard> {
             keyboardRows[rowNum].length,
             (int keyNum) {
               // Get the VirtualKeyboardKey object.
-              VirtualKeyboardKey virtualKeyboardKey =
-                  keyboardRows[rowNum][keyNum];
+              VirtualKeyboardKey virtualKeyboardKey = keyboardRows[rowNum][keyNum];
 
               Widget? keyWidget;
 
@@ -171,14 +168,10 @@ class _VirtualKeyboardState extends State<VirtualKeyboard> {
               } else {
                 // Call the builder function, so the user can specify custom UI for keys.
                 keyWidget = builder!(context, virtualKeyboardKey);
-
-                if (keyWidget == null) {
-                  throw 'builder function must return Widget';
-                }
               }
 
               return keyWidget;
-            } as Widget Function(int),
+            },
           ),
         ),
       );
@@ -201,9 +194,7 @@ class _VirtualKeyboardState extends State<VirtualKeyboard> {
         height: height! / _keyRows.length,
         child: Center(
             child: Text(
-          alwaysCaps
-              ? key.capsText!
-              : (isShiftEnabled ? key.capsText! : key.text!),
+          alwaysCaps ? key.capsText! : (isShiftEnabled ? key.capsText! : key.text!),
           style: textStyle,
         )),
       ),
@@ -216,15 +207,13 @@ class _VirtualKeyboardState extends State<VirtualKeyboard> {
     Widget? actionKey;
 
     // Switch the action type to build action Key widget.
-    switch (key.action) {
+    switch (key.action!) {
       case VirtualKeyboardKeyAction.Backspace:
         actionKey = GestureDetector(
             onLongPress: () {
               longPress = true;
               // Start sending backspace key events while longPress is true
-              Timer.periodic(
-                  Duration(milliseconds: _virtualKeyboardBackspaceEventPerioud),
-                  (timer) {
+              Timer.periodic(Duration(milliseconds: _virtualKeyboardBackspaceEventPerioud), (timer) {
                 if (longPress) {
                   onKeyPress(key);
                 } else {
